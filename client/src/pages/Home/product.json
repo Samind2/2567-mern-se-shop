@@ -1,0 +1,202 @@
+[
+ {
+  "_id": 1,
+  "name": "Coding Keyboard",
+  "description": "Mechanical Keyboard optimized for coding with customizable keycaps.",
+  "price": 3500,
+  "image": "https://picsum.photos/200?random=1",
+  "category": "Gadgets"
+ },
+ {
+  "_id": 2,
+  "name": "Leather Jacket",
+  "description": "Stylish leather jacket for all seasons.",
+  "price": 4500,
+  "image": "https://picsum.photos/200?random=2",
+  "category": "Clothing"
+ },
+ {
+  "_id": 3,
+  "name": "Bluetooth Earbuds",
+  "description": "High-quality sound with noise cancellation.",
+  "price": 2200,
+  "image": "https://picsum.photos/200?random=3",
+  "category": "Accessories"
+ },
+ {
+  "_id": 4,
+  "name": "Smartwatch",
+  "description": "Track your fitness and stay connected on the go.",
+  "price": 3200,
+  "image": "https://picsum.photos/200?random=4",
+  "category": "Gadgets"
+ },
+ {
+  "_id": 5,
+  "name": "Graphic T-Shirt",
+  "description": "Comfortable and trendy graphic t-shirt.",
+  "price": 800,
+  "image": "https://picsum.photos/200?random=5",
+  "category": "Clothing"
+ },
+ {
+  "_id": 6,
+  "name": "Canvas Backpack",
+  "description": "Durable backpack with multiple compartments.",
+  "price": 2500,
+  "image": "https://picsum.photos/200?random=6",
+  "category": "Accessories"
+ },
+ {
+  "_id": 7,
+  "name": "Gaming Mouse",
+  "description": "Ergonomic mouse with customizable DPI settings.",
+  "price": 1800,
+  "image": "https://picsum.photos/200?random=7",
+  "category": "Gadgets"
+ },
+ {
+  "_id": 8,
+  "name": "Denim Jeans",
+  "description": "Classic denim jeans with a modern fit.",
+  "price": 1200,
+  "image": "https://picsum.photos/200?random=8",
+  "category": "Clothing"
+ },
+ {
+  "_id": 9,
+  "name": "Sports Cap",
+  "description": "Lightweight and breathable sports cap.",
+  "price": 500,
+  "image": "https://picsum.photos/200?random=9",
+  "category": "Accessories"
+ },
+ {
+  "_id": 10,
+  "name": "Portable Speaker",
+  "description": "Wireless speaker with excellent sound quality.",
+  "price": 2700,
+  "image": "https://picsum.photos/200?random=10",
+  "category": "Gadgets"
+ },
+ {
+  "_id": 11,
+  "name": "Wool Sweater",
+  "description": "Cozy sweater for cold weather.",
+  "price": 1500,
+  "image": "https://picsum.photos/200?random=11",
+  "category": "Clothing"
+ },
+ {
+  "_id": 12,
+  "name": "Leather Wallet",
+  "description": "Compact and durable wallet for daily use.",
+  "price": 900,
+  "image": "https://picsum.photos/200?random=12",
+  "category": "Accessories"
+ },
+ {
+  "_id": 13,
+  "name": "Action Camera",
+  "description": "Capture every moment with a waterproof action camera.",
+  "price": 5500,
+  "image": "https://picsum.photos/200?random=13",
+  "category": "Gadgets"
+ },
+ {
+  "_id": 14,
+  "name": "Formal Shirt",
+  "description": "Classic formal shirt for office wear.",
+  "price": 1100,
+  "image": "https://picsum.photos/200?random=14",
+  "category": "Clothing"
+ },
+ {
+  "_id": 15,
+  "name": "Sunglasses",
+  "description": "Stylish sunglasses with UV protection.",
+  "price": 1200,
+  "image": "https://picsum.photos/200?random=15",
+  "category": "Accessories"
+ },
+ {
+  "_id": 16,
+  "name": "Fitness Tracker",
+  "description": "Monitor your steps and heart rate with ease.",
+  "price": 2800,
+  "image": "https://picsum.photos/200?random=16",
+  "category": "Gadgets"
+ },
+ {
+  "_id": 17,
+  "name": "Casual Sneakers",
+  "description": "Comfortable sneakers for everyday wear.",
+  "price": 2000,
+  "image": "https://picsum.photos/200?random=17",
+  "category": "Clothing"
+ },
+ {
+  "_id": 18,
+  "name": "Travel Duffel Bag",
+  "description": "Spacious duffel bag for all your travel needs.",
+  "price": 3000,
+  "image": "https://picsum.photos/200?random=18",
+  "category": "Accessories"
+ },
+ {
+  "_id": 19,
+  "name": "Wireless Charger",
+  "description": "Fast and efficient wireless charging pad.",
+  "price": 1500,
+  "image": "https://picsum.photos/200?random=19",
+  "category": "Gadgets"
+ },
+ {
+  "_id": 20,
+  "name": "Hooded Jacket",
+  "description": "Warm and stylish jacket with a hood.",
+  "price": 2700,
+  "image": "https://picsum.photos/200?random=20",
+  "category": "Clothing"
+ },
+ {
+  "_id": 21,
+  "name": "Elegant Scarf",
+  "description": "Soft scarf to complement any outfit.",
+  "price": 800,
+  "image": "https://picsum.photos/200?random=21",
+  "category": "Accessories"
+ },
+ {
+  "_id": 22,
+  "name": "Smart Home Hub",
+  "description": "Control all your smart devices in one place.",
+  "price": 6500,
+  "image": "https://picsum.photos/200?random=22",
+  "category": "Gadgets"
+ },
+ {
+  "_id": 23,
+  "name": "Cargo Pants",
+  "description": "Durable and stylish cargo pants.",
+  "price": 1700,
+  "image": "https://picsum.photos/200?random=23",
+  "category": "Clothing"
+ },
+ {
+  "_id": 24,
+  "name": "Elegant Handbag",
+  "description": "Luxurious handbag for special occasions.",
+  "price": 4000,
+  "image": "https://picsum.photos/200?random=24",
+  "category": "Accessories"
+ },
+ {
+  "_id": 25,
+  "name": "VR Headset",
+  "description": "Immerse yourself in the world of virtual reality.",
+  "price": 8000,
+  "image": "https://picsum.photos/200?random=25",
+  "category": "Gadgets"
+ }
+]

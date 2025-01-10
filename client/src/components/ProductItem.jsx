@@ -7,11 +7,11 @@ const ProductItem = ({ image, name, price, rateing }) => {
    <div className='space-y-1'>
     <h5>{name}</h5>
     <div className="rating rating-sm">
-     <input type="radio" name={"rating-" + rateing} className="mask mask-star-2 bg-orange-400" disabled defaultChecked={rateing == 1 ? true : false} />
-     <input type="radio" name={"rating-" + rateing} className="mask mask-star-2 bg-orange-400" disabled defaultChecked={rateing == 2 ? true : false} />
-     <input type="radio" name={"rating-" + rateing} className="mask mask-star-2 bg-orange-400" disabled defaultChecked={rateing == 3 ? true : false} />
-     <input type="radio" name={"rating-" + rateing} className="mask mask-star-2 bg-orange-400" disabled defaultChecked={rateing == 4 ? true : false} />
-     <input type="radio" name={"rating-" + rateing} className="mask mask-star-2 bg-orange-400" disabled defaultChecked={rateing == 5 ? true : false} />
+     <input type="radio" name={name} className="mask mask-star-2 bg-orange-400" disabled defaultChecked={rateing == 1 ? true : false} />
+     <input type="radio" name={name} className="mask mask-star-2 bg-orange-400" disabled defaultChecked={rateing == 2 ? true : false} />
+     <input type="radio" name={name} className="mask mask-star-2 bg-orange-400" disabled defaultChecked={rateing == 3 ? true : false} />
+     <input type="radio" name={name} className="mask mask-star-2 bg-orange-400" disabled defaultChecked={rateing == 4 ? true : false} />
+     <input type="radio" name={name} className="mask mask-star-2 bg-orange-400" disabled defaultChecked={rateing == 5 ? true : false} />
 
     </div>
     <div className="text-red">{price}</div>
