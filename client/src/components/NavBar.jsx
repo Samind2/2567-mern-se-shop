@@ -11,19 +11,19 @@ const NavBar = () => {
           <summary>Categories</summary>
           <ul>
             <li>
-              <a href="#electronics">All</a>
+              <a href="/shop">All</a>
             </li>
             <li>
-              <a href="#electronics">Clothing</a>
+              <a href="/shop?clothing">Clothing</a>
             </li>
             <li>
-              <a href="#electronics">Accessories</a>
+              <a href="/shop?accessories">Accessories</a>
             </li>
             <li>
-              <a href="#electronics">Gadgets</a>
+              <a href="/shop?gadgets">Gadgets</a>
             </li>
             <li>
-              <a href="#electronics">Swag</a>
+              <a href="/shop?swag">Swag</a>
             </li>
           </ul>
         </details>
@@ -77,7 +77,7 @@ const NavBar = () => {
           <a className="btn btn-ghost text-xl" href="/">
             <img
               src="/Logo.png"
-              alt="LOgo"
+              alt="Logo"
               className="h-6 lg:f-12 pr-a max-auto"
             />
             SE Sounenir Shop
