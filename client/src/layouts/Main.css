@@ -25,5 +25,5 @@ nav {
 .active {
   text-decoration: underline;
   text-underline-offset: 5px;
-  color: rgb(0, 54, 36);
+  color: green;
 }

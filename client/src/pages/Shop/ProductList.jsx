@@ -65,18 +65,17 @@ const ProductList = () => {
   return (
     <div className="section-container ">
       <div className="flex flex-col md:flex-row flex-wrap md:justify-between items-center space-y-3 mb-8">
-        {/**Filter */}
+        {/* Filter */}
         <div className="flex flex-row justify-start md:items-center md:gap-8 gap-4 flex-wrap">
           {categories.map((category, index) => {
             return (
               <button
+                className={` ${selectedCategory === category ? "active " : ""
+                  }px-4 py-2 rounded-full`}
                 key={index}
-                className={`${
-                  selectedCategory === category ? "active" : ""
-                }px-4 py-2 rounded-full`}
                 onClick={() => filterItem(category)}
               >
-                <p className="capitalize">{category}</p>
+                <p className=" capitalize">{category}</p>
               </button>
             );
           })}
@@ -113,9 +112,8 @@ const ProductList = () => {
         }).map((_, index) => (
           <button
             key={index}
-            className={`mx-1 px-3 py-1 rounded-full ${
-              currentPage === index + 1 ? "bg-red text-white" : "bg-gray"
-            }`}
+            className={`mx-1 px-3 py-1 rounded-full ${currentPage === index + 1 ? "bg-red text-white" : "bg-gray"
+              }`}
             onClick={() => paginate(index + 1)}
           >
             {index + 1}
@@ -127,3 +125,5 @@ const ProductList = () => {
 };
 
 export default ProductList;
+
+
