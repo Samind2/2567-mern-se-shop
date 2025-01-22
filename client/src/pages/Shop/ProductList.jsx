@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import ProductService from "../../services/product.service";
 import Card from "../../components/Card";
+import { useSearchParams } from "react-router"
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
@@ -8,18 +9,29 @@ const ProductList = () => {
   const [filteredItems, setFilteredItems] = useState([]);
   const [sortOption, setSortOption] = useState(["default"]);
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const [searchParams, setSearchParams] = useSearchParams();
   const [itemsPerPage, setItemsPerPage] = useState(8);
   const [currentPage, setCurrentPage] = useState(1);
+
+  const categoryQuery = searchParams.get("catrgory") || "all";
+  const itemsPerpageQuery = searchParams.get("itemsPerPage") || 4;
+  useEffect(() => {
+    setSelectedCategory(categoryQuery);
+    setItemsPerPage(itemsPerpageQuery)
+  }, [categoryQuery, itemsPerpageQuery])
   useEffect(() => {
     const fetchData = async () => {
-      const response = await ProductService.getAllProducts();
-      //console.log(response);
-      setProducts(response.data);
-      setFilteredItems(response.data);
-      setCategories([
-        "all",
-        ...new Set(response.data.map((item) => item.category)),
-      ]);
+      try {
+        const response = await ProductService.getAllProducts();
+        setProducts(response.data);
+        setFilteredItems(response.data); {/* ค่านี้จะต้องใช้งานได้ */ }
+        setCategories([
+          "all",
+          ...new Set(response.data.map((item) => item.category)),
+        ]);
+      } catch (error) {
+        console.error('เกิดข้อผิดพลาดในการดึงข้อมูลสินค้า:', error); {/* เพิ่มการตรวจจับข้อผิดพลาด */ }
+      }
     };
     fetchData();
   }, []);
@@ -31,6 +43,7 @@ const ProductList = () => {
         : products.filter((item) => item.category === category);
     setFilteredItems(filtered);
     handleSortChange(sortOption, filtered);
+    setSearchParams({ ['category']: category })
     setSelectedCategory(category);
   };
 

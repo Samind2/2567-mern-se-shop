@@ -9,7 +9,7 @@ const Card = ({ item }) => {
  }
  return (
   <div className="card shadow-xl relative mr-5 md:my-5 h:120">
-   <div className={`rating gap-1 absolute right-2 top-2 p-4 heartStar`} onClick={handleHeartClick}>
+   <div className={`rating gap-1 absolute right-2 top-2 p-4 z-10 heartStar`} onClick={handleHeartClick}>
     {/* <svg width="24"
      height="24"
      xmlns="http://www.w3.org/2000/svg" viewBox='0 0 24 24' fill='currentColor' className='w-5 h-5 cursor-pointer'>
