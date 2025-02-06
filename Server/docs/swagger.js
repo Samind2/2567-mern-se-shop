@@ -22,6 +22,10 @@ const doc = {
    name: 'Product',             // Tag name
    description: "API For Product Object", //Tag description
   },
+  {
+   name: 'Cart',             // Tag name
+   description: "API For Product Object", //Tag description
+  },
   // { ... }
  ],
  components: {

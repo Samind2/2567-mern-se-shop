@@ -5,7 +5,7 @@ const { Schema, model } = mongoose;
 const UserSchema = new Schema({
  username: { type: String, require: true, unique: true, min: 4 },
  password: { type: String, require: true },
-});
+}, { timestamps: true });
 
 //สร้างModel
 const UserModel = model("User", UserSchema);

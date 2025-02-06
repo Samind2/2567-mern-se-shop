@@ -13,7 +13,7 @@ const ProductList = () => {
   const [itemsPerPage, setItemsPerPage] = useState(8);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const categoryQuery = searchParams.get("catrgory") || "all";
+  const categoryQuery = searchParams.get("category") || "all";
   const itemsPerpageQuery = searchParams.get("itemsPerPage") || 4;
   useEffect(() => {
     setSelectedCategory(categoryQuery);
@@ -23,6 +23,7 @@ const ProductList = () => {
     const fetchData = async () => {
       try {
         const response = await ProductService.getAllProducts();
+        console.log("Product Data:", response.data); // ตรวจสอบข้อมูล
         setProducts(response.data);
         setFilteredItems(response.data); {/* ค่านี้จะต้องใช้งานได้ */ }
         setCategories([
@@ -40,10 +41,10 @@ const ProductList = () => {
     const filtered =
       category === "all"
         ? products
-        : products.filter((item) => item.category === category);
+        : products.filter((item) => item.category.toLowerCase() === category.toLowerCase());
     setFilteredItems(filtered);
     handleSortChange(sortOption, filtered);
-    setSearchParams({ ['category']: category })
+    setSearchParams({ category });
     setSelectedCategory(category);
   };
 

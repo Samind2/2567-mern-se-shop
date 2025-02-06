@@ -13,7 +13,7 @@ router.get("/:id", productController.getById)
 //http://localhost:5000/api/v1/Product/id
 router.delete("/:id", productController.deleteProduct);
 //http://localhost:5000/api/v1/Product/id
-router.put("/:id", productController.updateProduct)
+router.put("/:id", upload, uploadToFirebase, productController.updateProduct);
 
 
 module.exports = router;

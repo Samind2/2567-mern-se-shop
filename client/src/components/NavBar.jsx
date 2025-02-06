@@ -19,16 +19,16 @@ const NavBar = () => {
               <a href="/shop">All</a>
             </li>
             <li>
-              <a href="/shop?catrgory=clothing">Clothing</a>
+              <a href="/shop?category=clothing">Clothing</a>
             </li>
             <li>
-              <a href="/shop?catrgory=accessories">Accessories</a>
+              <a href="/shop?category=accessories">Accessories</a>
             </li>
             <li>
-              <a href="/shop?catrgory=gadgets">Gadgets</a>
+              <a href="/shop?category=gadgets">Gadgets</a>
             </li>
             <li>
-              <a href="/shop?catrgory=swag">Swag</a>
+              <a href="/shop?category=swag">Swag</a>
             </li>
           </ul>
         </details>

@@ -4,6 +4,7 @@ require("dotenv").config();
 const mongoose = require("mongoose");
 const userRouter = require("./routers/user.router");
 const productRouter = require("./routers/Products.router");
+const CartRouter = require("./routers/Cart.router")
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./docs/swagger-output.json');
 
@@ -42,6 +43,7 @@ try {
 // User router
 app.use("/api/v1/auth", userRouter);
 app.use("/api/v1/product", productRouter);
+app.use("/api/v1/cart", CartRouter);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 

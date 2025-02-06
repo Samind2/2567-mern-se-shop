@@ -6,8 +6,8 @@ const ProductSchema = new Schema({
  description: { type: String, require: true },
  category: { type: String, require: true },
  price: { type: Number, require: true },
- image: { type: String, require: true }
-})
+ image: { type: String, require: true },
+}, { timestamps: true })
 
 //สร้างModel
 const ProductModel = model("Product", ProductSchema);

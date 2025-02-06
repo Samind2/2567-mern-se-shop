@@ -72,11 +72,21 @@ exports.createProduct = async (req, res) => {
 
 
 exports.getProduct = async (req, res) => {
+  /**
+     #swagger.tags = ['Product']
+     #swagger.summary = "get All product"
+     #swagger.description = 'Endpoint to create a new product'
+    */
   const product = await ProductModel.find()
   res.json(product);
 }
 
 exports.getById = async (req, res) => {
+  /**
+     #swagger.tags = ['Product']
+     #swagger.summary = "getById product"
+     #swagger.description = 'Endpoint to create a new product'
+    */
   const { id } = req.params;
   try {
     const productDoc = await ProductModel.findById(id)
@@ -93,6 +103,11 @@ exports.getById = async (req, res) => {
 
 // Delete Product
 exports.deleteProduct = async (req, res) => {
+  /**
+     #swagger.tags = ['Product']
+     #swagger.summary = "deleteProduct"
+     #swagger.description = 'Endpoint to create a new product'
+    */
   const { id } = req.params;
   try {
     const productDoc = await ProductModel.findById(id);
@@ -116,37 +131,41 @@ exports.deleteProduct = async (req, res) => {
 
 // Update Product
 exports.updateProduct = async (req, res) => {
+  /**
+     #swagger.tags = ['Product']
+     #swagger.summary = "updateProduct"
+     #swagger.description = 'Endpoint to create a new product'
+    */
   const { id } = req.params;
   if (!id)
-    return res.status(404).json({ message: "Product id is not provided" });
-
+    return res.status(404).json({ message: "Product id is not Provided" });
   try {
     const productDoc = await ProductModel.findById(id);
     if (!productDoc) {
-      res.status(404).send({
-        message: "Product not found!",
-      });
+      res.status(404).json({ message: "You Cannnot update this product" });
       return;
     }
+
     const { name, category, description, price } = req.body;
     if (!name || !description || !category || !price) {
-      return res.status(400).json({ message: "All Fields is required" });
+      return res.status(400).json({ message: "All fields are required" });
     }
     productDoc.name = name;
     productDoc.category = category;
     productDoc.description = description;
     productDoc.price = price;
+
     if (req.file) {
-      const path = req.file.firebaseUrl;
-      productDoc.image = path;
+      productDoc.image = req.file.firebaseUrl;
     }
+
     await productDoc.save();
-    res.json(productDoc);
+    res.status(200).json(productDoc);
   } catch (error) {
     console.log(error.message);
     res.status(500).send({
       message:
-        error.message || "Something error occurred while updating a product",
+        error.message || "Something error occurred while updating the product.",
     });
   }
 };
