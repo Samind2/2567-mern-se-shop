@@ -27,7 +27,8 @@ const Product = () => {
   const fetchData = async () => {
    const response = await ProductService.getAllProducts();
    const data = response.data;
-   const specialdata = data.filter((item) => item.category === "gadget");
+   const specialdata = data.filter((item) => ["gadget", "accessory", "swag"].includes(item.category.toLowerCase()));
+
 
    setProducts(specialdata);
    setFilteredItems(response.data); // Set the filtered items
@@ -77,8 +78,8 @@ const Product = () => {
  return (
   <div className="section-container my-20 relative">
    <div className="text-left">
-    <p className="subtitle">Our Story & Services</p>
-    <h2 className="title">Our Journey and Services</h2>
+    <p className="subtitle">SPECIAL ITEMS </p>
+    <h2 className="title">Standout Items from Our Products </h2>
    </div>
    <div className="md:absolute right-3 top-8 mb-10 md:mr-24 space-x-2">
     <button className='btn bg-red p-2 rounded-full h-10 w-10 mt-5 text-white' onClick={() => slider?.current?.slickPrev()}>

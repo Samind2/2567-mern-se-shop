@@ -23,15 +23,13 @@ const ProductList = () => {
     const fetchData = async () => {
       try {
         const response = await ProductService.getAllProducts();
-        console.log("Product Data:", response.data); // ตรวจสอบข้อมูล
+        console.log("Product Data:", response.data);
         setProducts(response.data);
-        setFilteredItems(response.data); {/* ค่านี้จะต้องใช้งานได้ */ }
-        setCategories([
-          "all",
-          ...new Set(response.data.map((item) => item.category)),
-        ]);
+        setFilteredItems((prev) => prev.length > 0 ? prev : response.data); // ✅ ป้องกันการเซ็ตค่าซ้ำ
+        setCategories(["all", ...new Set(response.data.map((item) => item.category.toLowerCase()))]);
+
       } catch (error) {
-        console.error('เกิดข้อผิดพลาดในการดึงข้อมูลสินค้า:', error); {/* เพิ่มการตรวจจับข้อผิดพลาด */ }
+        console.error('เกิดข้อผิดพลาดในการดึงข้อมูลสินค้า:', error);
       }
     };
     fetchData();
