@@ -7,6 +7,8 @@ import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWith
 
 const AuthProvider = ({ children }) => {
  const [user, setUser] = useState(null);
+ const [isLoading, setisLoading] = useState(true);
+
  const auth = getAuth(app)
  const createUser = (email, password) => {
   return createUserWithEmailAndPassword(auth, email, password)
@@ -57,6 +59,7 @@ const AuthProvider = ({ children }) => {
   signUpWithGithub,
   signUpWithFacebook,
   updateUserProfile,
+  isLoading,
  }
  //check if user is logged in
  useEffect(() => {
@@ -64,7 +67,9 @@ const AuthProvider = ({ children }) => {
    setUser(currentUser)
    if (currentUser) {
     setUser(currentUser)
+    setisLoading(false)
    }
+   setisLoading(false)
   })
   return () => {
    return unsubscribe();
