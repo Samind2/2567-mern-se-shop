@@ -3,9 +3,9 @@ const { Schema, model } = mongoose;
 
 //วิธีแยก Class พิมพ์ใหญ่ Object พิมพ์เล็ก
 const UserSchema = new Schema({
- username: { type: String, require: true, unique: true, min: 4 },
- password: { type: String, require: true },
-}, { timestamps: true });
+  email: { type: String, required: true, unique: true },
+  role: { type: String, enum: ["admin", "user"], default: "user" },
+});
 
 //สร้างModel
 const UserModel = model("User", UserSchema);

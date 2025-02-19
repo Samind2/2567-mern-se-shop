@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import ProductService from "../../services/product.service";
 import Swal from "sweetalert2";
 import { IoAddCircle } from "react-icons/io5";
+import { useNavigate } from "react-router-dom"; // นำเข้า useNavigate
 
 const Index = () => {
+  const navigate = useNavigate(); // ใช้ useNavigate
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -44,6 +46,8 @@ const Index = () => {
         text: "Product added successfully!",
         icon: "success",
         confirmButtonText: "OK",
+      }).then(() => {
+        navigate("/dashboard/manageItems"); // ไปที่หน้า manageItems หลังจากกด OK
       });
     } catch (error) {
       Swal.fire({
@@ -57,7 +61,9 @@ const Index = () => {
 
   return (
     <div className="max-w-2xl mx-auto bg-white shadow-lg rounded-xl p-6 mt-10">
-      <h1 className="text-2xl font-bold text-center mb-6">Add Product</h1>
+      <h1 className="text-2xl text-red font-bold text-center mb-6">
+        Add Product
+      </h1>
       <form
         onSubmit={handleSubmit}
         className="space-y-4"
@@ -149,7 +155,7 @@ const Index = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white p-3 rounded-lg font-bold hover:bg-blue-700 transition-all ease-in-out transform hover:scale-105 shadow-md hover:shadow-xl flex items-center justify-center gap-2"
+          className="w-full bg-red text-white p-3 rounded-lg font-bold hover:bg-secondary transition-all ease-in-out transform hover:scale-105 shadow-md hover:shadow-xl flex items-center justify-center gap-2"
         >
           <IoAddCircle size={24} />
           <span>Add Product</span>

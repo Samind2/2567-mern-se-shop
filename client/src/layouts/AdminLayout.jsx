@@ -1,5 +1,5 @@
 import logo from "/Logo.png";
-import { Outlet } from "react-router";
+import { Outlet, Link, useLocation } from "react-router-dom";
 import { MdSpaceDashboard } from "react-icons/md";
 import { FaCartArrowDown } from "react-icons/fa6";
 import { FaCartPlus } from "react-icons/fa";
@@ -8,15 +8,50 @@ import { FaUser } from "react-icons/fa";
 
 const AdminLayout = () => {
   const isAdmin = true;
+  const location = useLocation();
+
+  // แปลง pathname เป็น breadcrumb
+  const breadcrumb = location.pathname
+    .split("/")
+    .filter((path) => path)
+    .map((path, index, array) => {
+      const url = `/${array.slice(0, index + 1).join("/")}`;
+      return { label: path.replace(/-/g, " "), url };
+    });
 
   return (
     <div>
       {isAdmin ? (
         <div className="drawer lg:drawer-open">
           <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-          <div className="drawer-content flex flex-col items-center justify-center">
+          <div className="drawer-content flex flex-col w-full">
+            {/* Breadcrumb Navigation */}
+            <div className="p-4 bg-gray-100 border-b text-gray-700">
+              <nav className="text-sm breadcrumbs">
+                <ul className="flex space-x-2">
+                  {breadcrumb.map((item, index) => (
+                    <li key={index} className="flex items-center">
+                      <span className="mx-2">/</span>
+                      {index === breadcrumb.length - 1 ? (
+                        <span className="text-gray-500">{item.label}</span>
+                      ) : (
+                        <Link
+                          to={item.url}
+                          className="text-red hover:underline"
+                        >
+                          {item.label}
+                        </Link>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            </div>
+
             {/* Page content here */}
-            <Outlet />
+            <div className="flex flex-col items-center justify-center p-6">
+              <Outlet />
+            </div>
           </div>
           <div className="drawer-side">
             <label
@@ -25,12 +60,15 @@ const AdminLayout = () => {
               className="drawer-overlay"
             ></label>
             <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
-              {/* Sidebar content here */}
+              {/* Sidebar content */}
               <li>
-                <a href="/dashboard" className="flex justify*start mb-3">
-                  <img src="/Logo.png" className="w-20" />
+                <Link
+                  to="/dashboard"
+                  className="flex items-center space-x-2 mb-3"
+                >
+                  <img src={logo} className="w-20" alt="Logo" />
                   <div className="badge badge-primary">Admin</div>
-                </a>
+                </Link>
               </li>
               <div className="relative flex py-8 items-center">
                 <div className="flex-grow border-t border-gray-400"></div>
@@ -38,34 +76,34 @@ const AdminLayout = () => {
                 <div className="flex-grow border-t border-gray-400"></div>
               </div>
               <li>
-                <a href="/dashboard">
+                <Link to="/dashboard">
                   <MdSpaceDashboard />
                   Dashboard
-                </a>
+                </Link>
               </li>
               <li>
-                <a>
+                <Link to="/dashboard/manage-orders">
                   <FaCartArrowDown />
                   Manage Orders
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/dashboard/add-product">
+                <Link to="/dashboard/add-product">
                   <FaCartPlus />
                   Add Product
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/dashboard/manageItems">
+                <Link to="/dashboard/manageItems">
                   <MdOutlineDashboardCustomize />
                   Manage Item
-                </a>
+                </Link>
               </li>
               <li>
-                <a>
+                <Link to="/dashboard/all-users">
                   <FaUser />
                   All User
-                </a>
+                </Link>
               </li>
               <div className="relative flex py-8 items-center">
                 <div className="flex-grow border-t border-gray-400"></div>
@@ -73,22 +111,27 @@ const AdminLayout = () => {
                 <div className="flex-grow border-t border-gray-400"></div>
               </div>
               <li>
-                <a>Home</a>
+                <Link to="/">Home</Link>
               </li>
               <li>
-                <a>Products</a>
+                <Link to="/products">Products</Link>
               </li>
               <li>
-                <a>Order Tracking</a>
+                <Link to="/order-tracking">Order Tracking</Link>
               </li>
               <li>
-                <a>Customer Support</a>
+                <Link to="/customer-support">Customer Support</Link>
               </li>
             </ul>
           </div>
         </div>
       ) : (
-        <div>You are not an Admin! Back to Home</div>
+        <div className="p-6 text-center text-red-500 font-bold">
+          You are not an Admin!{" "}
+          <Link to="/" className="underline">
+            Back to Home
+          </Link>
+        </div>
       )}
     </div>
   );

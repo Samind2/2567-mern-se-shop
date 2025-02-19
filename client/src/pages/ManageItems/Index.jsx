@@ -94,7 +94,9 @@ const Index = () => {
 
   return (
     <div className="container mx-auto p-6">
-      <h2 className="text-3xl font-bold text-center mb-6">Manage Products</h2>
+      <h2 className="text-3xl text-red font-bold text-center mb-6">
+        Manage Products
+      </h2>
 
       {loading ? (
         <p className="text-center">Loading...</p>
@@ -102,7 +104,7 @@ const Index = () => {
         <div className="overflow-x-auto">
           <table className="table-auto w-full border-collapse border border-gray-300 shadow-lg">
             <thead>
-              <tr className="bg-gray-200">
+              <tr className="bg-red text-white rounded-sm text-center">
                 <th className="p-3 border">Image</th>
                 <th className="p-3 border">Name</th>
                 <th className="p-3 border">Category</th>
@@ -134,14 +136,14 @@ const Index = () => {
                     <td className="p-3 border">
                       <div className="flex justify-center space-x-3">
                         <button
-                          className="bg-green-500 text-white px-4 py-2 rounded-lg flex items-center space-x-2 hover:bg-green-600 transition-colors"
+                          className="bg-secondary text-white px-4 py-2 rounded-lg flex items-center space-x-2 hover:bg-green-600 transition-colors"
                           onClick={() => handleEdit(product)}
                         >
                           <CiEdit className="text-xl" />
                           <span>Edit</span>
                         </button>
                         <button
-                          className="bg-blue-600 text-white px-4 py-2 rounded-lg flex items-center space-x-2 hover:bg-red-700 transition-colors"
+                          className="bg-red text-white px-4 py-2 rounded-lg flex items-center space-x-2 hover:bg-red-700 transition-colors"
                           onClick={() => handleDelete(product._id)}
                         >
                           <MdDelete className="text-xl" />
@@ -153,6 +155,15 @@ const Index = () => {
                 ))
               )}
             </tbody>
+            <tfoot className="h-16">
+              <tr className="bg-red text-white text-lg text-center">
+                <th className="w-1/6 px-4 py-2">Image</th>
+                <th className="w-2/6 px-4 py-2">Name</th>
+                <th className="w-1/6 px-4 py-2">Category</th>
+                <th className="w-1/6 px-4 py-2">Price (THB)</th>
+                <th className="w-1/6 px-4 py-2">Actions</th>
+              </tr>
+            </tfoot>
           </table>
         </div>
       )}

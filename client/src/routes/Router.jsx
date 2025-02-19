@@ -12,7 +12,7 @@ import ProtectedRoute from "../components/ProtectedRoute";
 import Dashboard from "../pages/Dashboard/Index";
 import AddProducts from "../pages/AddProduct/Index";
 import ManageItems from "../pages/ManageItems/Index";
-
+import AdminRoute from "../ProtectedRoutes/AdminRoute";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -62,7 +62,11 @@ const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <AdminLayout />,
+    element: (
+      <AdminRoute>
+        <AdminLayout />
+      </AdminRoute>
+    ),
     children: [
       {
         path: "dashboard",
