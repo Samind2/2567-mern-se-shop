@@ -24,12 +24,12 @@ router.patch(
   "/admin/:email",
   authJwt.verifyToken,
   authJwt.isAdmin,
-  userControllers.makeAdmin
+  userControllers.makeUser
 );
 router.patch(
   "/user/:email",
   authJwt.verifyToken,
   authJwt.isAdmin,
-  userControllers.makeUser
+  userControllers.makeAdmin
 );
 module.exports = router;
