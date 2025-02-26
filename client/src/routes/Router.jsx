@@ -13,6 +13,7 @@ import Dashboard from "../pages/Dashboard/Index";
 import AddProducts from "../pages/AddProduct/Index";
 import ManageItems from "../pages/ManageItems/Index";
 import AdminRoute from "../ProtectedRoutes/AdminRoute";
+import ManageUser from "../pages/ManageUser/Index";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -79,6 +80,10 @@ const router = createBrowserRouter([
       {
         path: "manageItems",
         element: <ManageItems />,
+      },
+      {
+        path: "manageUser",
+        element: <ManageUser />,
       },
     ],
   },

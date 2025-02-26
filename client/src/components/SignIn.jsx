@@ -1,10 +1,11 @@
-import React from 'react'
+import React from "react";
 import { FaGithub, FaGoogle, FaFacebook } from "react-icons/fa";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../context/AuthContext";
 import Swal from "sweetalert2";
 import { useNavigate, useLocation } from "react-router";
+import UserService from "../services/user.service";
 //import SocailLogin from './SocailLogin';
 
 const SignIn = () => {
@@ -22,8 +23,10 @@ const SignIn = () => {
     console.log(data);
 
     login(data.email, data.password)
-      .then((result) => {
+      .then(async (result) => {
         const user = result.user;
+        //TODO Sign up to local backed
+        await UserService.addUser(user.email);
         console.log(user);
         Swal.fire({
           icon: "success",

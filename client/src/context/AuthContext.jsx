@@ -28,6 +28,9 @@ const AuthProvider = ({ children }) => {
   const getUser = () => {
     const userInfo = cookies.get("user") || null;
     //decode token
+    if (userInfo) {
+      console.log("User Info:", userInfo); // ตรวจสอบข้อมูล user ใน console
+    }
     // const saveuser = cookies.get("user");
     return userInfo;
   };
@@ -88,18 +91,20 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
       if (currentUser) {
-        setUser(currentUser);
         setIsLoading(false);
         const { email } = currentUser;
-        const { data } = await UserService.signJwt(email);
-        if (data) {
-          cookies.set("user", data);
+        const response = await UserService.signJwt(email); // รับข้อมูล role และ token จาก API
+
+        if (response.data) {
+          console.log("User Data:", response.data); // ตรวจสอบข้อมูล
+          cookies.set("user", response.data); // เก็บข้อมูล user ที่มี role
         }
       } else {
-        cookies.remove("token");
+        cookies.remove("user");
       }
       setIsLoading(false);
     });
+
     return () => {
       return unsubscribe();
     };

@@ -100,7 +100,7 @@ const AdminLayout = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/dashboard/all-users">
+                <Link to="/dashboard/manageUser">
                   <FaUser />
                   All User
                 </Link>
