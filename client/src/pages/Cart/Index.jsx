@@ -5,15 +5,20 @@ import CartService from "../../services/cart.service";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../context/AuthContext";
 
+import PaymentButton from "../../components/PaymentButton";
+
 const Index = () => {
   const [cart, refetch] = useCart();
   const { user } = useContext(AuthContext);
   const formatPrice = (price) => {
-    return new Intl.NumberFormat("th-TH", { style: 'currency', currency: 'THB' }).format(price)
-  }
+    return new Intl.NumberFormat("th-TH", {
+      style: "currency",
+      currency: "THB",
+    }).format(price);
+  };
   const totalPrice = (cart) => {
     let total = 0;
-    cart.forEach(item => {
+    cart.forEach((item) => {
       total += item.quantity * item.price;
     });
     return total;
@@ -23,7 +28,7 @@ const Index = () => {
   //   totalPrice += cart[i].quantity * cart[i].price;
   // }
 
-  const handleclearAllItem = async () => {
+  const handleClearCart = async () => {
     Swal.fire({
       icon: "warning",
       title: "Are you sure to clear your shopping cart?",
@@ -45,6 +50,8 @@ const Index = () => {
               text: response.message,
               timer: 1500,
               showConfirmButton: false,
+            }).then(() => {
+              window.location.reload();
             });
           }
         } catch (error) {
@@ -97,7 +104,9 @@ const Index = () => {
       try {
         //const increase = { quantity: cartItem.quantity + 1 }; //กรณีนี้ใช้ในกรณีที่มีAttibute หลายตัว
         //เรียกดูจากServiceโดยดูว่าส่งอะไรมาบ้าง
-        const response = await CartService.updateCart(cartItem._id, { quantity: cartItem.quantity + 1 });
+        const response = await CartService.updateCart(cartItem._id, {
+          quantity: cartItem.quantity + 1,
+        });
         if (response.status === 200) {
           refetch();
         }
@@ -113,10 +122,8 @@ const Index = () => {
         icon: "warning",
         title: "You reach maximum buy  limit",
         showCancelButton: true,
-
-      })
+      });
     }
-
   };
 
   const handleDecrease = async (cartItem) => {
@@ -124,7 +131,9 @@ const Index = () => {
       try {
         //const decrease = { quantity: cartItem.quantity - 1 }; //กรณีนี้ใช้ในกรณีที่มีAttibute หลายตัว
         //เรียกใชิจากService โดยดูว่าส่งอะไรมาบ้าง
-        const response = await CartService.updateCart(cartItem._id, { quantity: cartItem.quantity - 1 });
+        const response = await CartService.updateCart(cartItem._id, {
+          quantity: cartItem.quantity - 1,
+        });
         if (response.status === 200) {
           refetch();
         }
@@ -169,7 +178,6 @@ const Index = () => {
         }
       });
     }
-
   };
 
   return (
@@ -198,8 +206,8 @@ const Index = () => {
                   <th>Price</th>
                   <th>
                     <button
-                      className="btn btn-outline btn-error"
-                      onClick={handleclearAllItem}
+                      className="btn btn-md bg-red text-white py-2 px-4 btn-error"
+                      onClick={handleClearCart}
                     >
                       Clear Cart
                     </button>
@@ -269,7 +277,7 @@ const Index = () => {
                   <th>Price Per Unit</th>
                   <th>Price</th>
                   <th>
-                    <button className="btn btn-outline btn-error">
+                    <button className="btn btn-md bg-red text-white py-2 px-4 btn-error">
                       Clear Cart
                     </button>
                   </th>
@@ -288,9 +296,8 @@ const Index = () => {
                 <h3 className="text-lg font-semibold ">Shopping Detail</h3>
                 <p>Total Product: {cart.length}</p>
                 <p>Total Price: {formatPrice(totalPrice(cart))}</p>
-                <a href="/check-out" className="btn btn-md bg-red text-white p-y-8 p-x-4"> Product Check Out </a>
+                <PaymentButton cartItem={cart}></PaymentButton>
               </div>
-
             </div>
           </div>
         ) : (
