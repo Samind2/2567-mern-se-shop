@@ -16,6 +16,7 @@
     "client": "file:",
     "cookies": "^0.9.1",
     "firebase": "^11.2.0",
+    "lottie-react": "^2.4.1",
     "react": "^18.3.1",
     "react-cookie": "^7.2.2",
     "react-dom": "^18.3.1",
