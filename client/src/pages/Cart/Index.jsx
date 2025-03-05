@@ -1,13 +1,16 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import useCart from "../../hooks/useCart";
 import { FaTrash } from "react-icons/fa";
 import CartService from "../../services/cart.service";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../context/AuthContext";
+import { useNavigate } from 'react-router-dom';
+
 
 import PaymentButton from "../../components/PaymentButton";
 
 const Index = () => {
+  const navigate = useNavigate();
   const [cart, refetch] = useCart();
   const { user } = useContext(AuthContext);
   const formatPrice = (price) => {
@@ -277,7 +280,10 @@ const Index = () => {
                   <th>Price Per Unit</th>
                   <th>Price</th>
                   <th>
-                    <button className="btn btn-md bg-red text-white py-2 px-4 btn-error">
+                  <button
+                      className="btn btn-md bg-red text-white py-2 px-4 btn-error"
+                      onClick={handleClearCart}
+                    >
                       Clear Cart
                     </button>
                   </th>
@@ -308,6 +314,16 @@ const Index = () => {
           </div>
         )}
       </div>
+      {cart.length === 0 && (
+  <div className="flex justify-center mt-4">
+    <button
+      className="btn bg-red px-8 py-3 font-semibold text-white rounded-full"
+      onClick={() => navigate("/shop")}
+    >
+      Shop Now
+    </button>
+  </div>
+)}
     </div>
   );
 };

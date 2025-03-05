@@ -1,5 +1,7 @@
 const Stripe = require("stripe");
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+const OrderModel = require("../models/Order");
+const CartModel = require("../models/Cart");
 
 exports.createCheckOutSession = async (req, res) => {
   const cartItems = req.body.cart;
@@ -90,5 +92,80 @@ exports.createCheckOutSession = async (req, res) => {
     success_url: `${process.env.BASE_URL}/checkout-success`,
     cancel_url: `${process.env.BASE_URL}/cart`,
   });
+  console.log(session);
+
   res.send({ url: session.url });
+};
+
+const clearCart = async (email) => {
+  try {
+    await CartModel.deleteMany({ email }); // Delete all cart items for the user
+    console.log("Cart Cleared successfully");   
+  } catch (error) {
+    res.status(500).send({
+      message:
+        error.message ||
+        "Something error occurred while clearing cart",
+    });
+  }
+}
+const createOrder = async (customer, data) => {
+  const products = JSON.parse(customer.metadata.cart); // แปลงsting เป็น Object
+  console.log("Products", products);
+  try {
+    const newOrder = await OrderModel.create({
+      email: customer.metadata.email,
+      customerId: data.customer,
+      products,
+      subtotal: data.amount_subtotal,
+      total: data.amount_total,
+      shipping: data.customer_details,
+      payment_status: data.payment_status,
+    }); // สร้าง Order ใหม่
+    if (newOrder) {
+      console.log("Order created successfully");
+      
+      await clearCart(customer.metadata.email); // ลบสินค้าในตะกร้า
+    }
+  } catch (error) {
+    res.status(500).send({
+      message:
+        error.message ||
+        "Something error occurred while creating creating new order",
+    });
+  }
+};
+
+exports.webhook = async (req, res) => {
+  console.log("Webhook is called!");
+  const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET; // Add your endpoint secret here
+  console.log(endpointSecret);
+  const sig = req.headers["stripe-signature"];
+  let event;
+
+  try {
+    event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret);
+  } catch (err) {
+    res.status(400).send({ message: `Webhook Error: ${err.message}` });
+  }
+
+  // Handle the event
+  switch (event.type) {
+    case "checkout.session.completed":
+      console.log("Payment received!");
+      let data = event.data.object;
+      //retrieve = ดึงข้อมูล
+      stripe.customers.retrieve(data.customer).then(async (customer) => {
+        try {
+          await createOrder(customer, data);
+        } catch (error) {
+          res.status(500).send({ message: `Webhook Error: ${err.message}` });
+        }
+      });
+      break;
+    // ... handle other event types
+    default:
+      console.log(`Unhandled event type ${event.type}`);
+  }
+  res.status(200).end();
 };

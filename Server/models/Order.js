@@ -3,30 +3,23 @@ const { Schema, model } = mongoose;
 
 const OrderSchema = new Schema(
   {
-    customerId: { type: Schema.Types.ObjectId, ref: "User", required: true },
-    description: { type: String, required: true },
-    payment_method: { type: Number, required: true },
-    total_price: { type: Number, required: true },
-    status: {
-      type: String,
-      enum: ["pending", "paid", "shipped", "delivered", "canceled"],
-      default: "pending",
-      required: true,
-    },
-    delivery: {
-      type: {
-        type: String, // วิธีจัดส่ง
-        tracking_number: String, // เลขติดตามพัสดุ
-        estimated_delivery: Date, // วันที่คาดว่าจะส่งถึง
+    email: { type: String, required: true }, // customer email
+    customerId: { type: String, required: true }, // customer id from stripe
+    products: [
+      {
+        productId: {
+          type: Schema.Types.ObjectId,
+          ref: "Product",
+          required: true,
+        }, // product id from product model
+        quantity: { type: Number, required: true, default: 1 }, // quantity of product
       },
-      default: {},
-    },
-    address: {
-      street: { type: String, required: true },
-      city: { type: String, required: true },
-      postalCode: { type: String, required: true },
-      country: { type: String, required: true },
-    },
+    ],
+    subtotal: { type: Number, required: true }, // total price of products
+    total: { type: Number, required: true, default: 1 }, // total price of products
+    shipping: { type: Object, required: true }, // shipping info
+    delivery_status: { type: String, required: true, default: "pending" }, // delivery info
+    payment_status: { type: String, required: true, default: "unpaid" }, // payment info
   },
   { timestamps: true }
 );

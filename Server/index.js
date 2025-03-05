@@ -8,7 +8,6 @@ const CartRouter = require("./routers/Cart.router");
 const stripeRouter = require("./routers/stripe.router");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./docs/swagger-output.json");
-
 const app = express();
 const BASE_URL = process.env.BASE_URL;
 const PORT = process.env.PORT;
@@ -23,9 +22,12 @@ const corsOptions = {
 
 // ใช้งาน CORS พร้อม corsOptions
 app.use(cors(corsOptions));
-app.options("*", cors(corsOptions)); // เปิดใช้งาน Preflight Request
-
+//stripe webhook must use raw body
+app.use("/api/v1/stripe/webhook", express.raw({ type: "application/json" }));
+app.options("*", cors(corsOptions)); 
 app.use(express.json());
+
+
 // เส้นทางหลัก
 app.get("/", (req, res) => {
   res.send("<h1>Welcome to Mern-SE-Shop Restful API</h1>");
