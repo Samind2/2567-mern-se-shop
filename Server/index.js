@@ -18,7 +18,7 @@ const DB_URL = process.env.DB_URL;
 const corsOptions = {
   origin: [
     "https://two567-mern-se-shop.onrender.com",
-    'https://2567-mern-se-shop-7z3dmgw0w-saminds-projects.vercel.app'
+    'https://2567-mern-se-shop-2lt4zn7gv-saminds-projects.vercel.app'
   ],
   // อนุญาตเฉพาะ URL ของ Frontend
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"], // Methods ที่อนุญาต
@@ -30,7 +30,7 @@ app.use(cors(corsOptions));
 //stripe webhook must use raw body
 app.use("/api/v1/stripe/webhook", express.raw({ type: "application/json" }));
 // กำหนดให้อนุญาต OPTIONS ทั้งหมด
-//app.options("*", cors(corsOptions));
+app.options("*", cors(corsOptions));
 app.use(express.json());
 
 
