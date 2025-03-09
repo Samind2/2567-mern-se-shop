@@ -9,7 +9,7 @@ exports.getOrder = async (req, res) => {
      #swagger.description = 'Endpoint to get all orders with product details'
   */
   try {
-    const orders = await OrderModel.find().populate("products.productId"); // ใช้ populate
+    const orders = await OrderModel.find().populate("products.productId"); // ใช้ populate เพื่อดึงข้อมูลสินค้า จาก ProductModel มาแสดง ใน OrderModel  ด้วย ref ที่เราได้กำหนดไว้ ใน OrderModel
     res.json(orders);
   } catch (error) {
     res.status(500).send({ message: "Error retrieving orders" });
