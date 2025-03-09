@@ -1,11 +1,14 @@
 import api from "./api";
-const API_URL = "/cart";
+const API_URL = "/api/v1/cart";
 
 const getCart = async () => {
   return await api.get(`${API_URL}`);
 };
 
 const getByemail = async (email) => {
+  if (!email) {
+    throw new Error("Email is required");
+  }
   return await api.get(`${API_URL}/${email}`);
 };
 
