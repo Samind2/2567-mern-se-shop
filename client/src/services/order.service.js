@@ -1,5 +1,5 @@
 import api from "./api";
-const API_URL = "/order";
+const API_URL = "api/v1/order";
 
 const getOrder = async () => {
     return await api.get(`${API_URL}`);

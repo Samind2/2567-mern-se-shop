@@ -28,7 +28,7 @@ const Index = () => {
         style={{ backgroundImage: "url('/BG-Card.png')" }}>
         <h2 className="font-semibold mb-2">Manage Users</h2>
         <p className="text-sm mb-4">View and manage users that have signed up to the store</p>
-        <a href="/add-product" className="bg-pink-500 hover:bg-pink-600 px-4 py-2 rounded-md">Manage Users</a>
+        <a href="/dashboard/manageUser" className="bg-pink-500 hover:bg-pink-600 px-4 py-2 rounded-md">Manage Users</a>
       </div>
 
       {/* การ์ด Manage Orders */}
