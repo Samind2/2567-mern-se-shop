@@ -31,8 +31,8 @@ app.use(cors(corsOptions));
 // Stripe webhook must use raw body
 app.use("/api/v1/stripe/webhook", express.raw({ type: "application/json" }));
 
-// กำหนดให้อนุญาต OPTIONS ทั้งหมด
-app.options("*", cors(corsOptions));
+// ใช้ corsOptions ในการตั้งค่า CORS
+app.use(cors(corsOptions));
 
 app.use(express.json());
 
