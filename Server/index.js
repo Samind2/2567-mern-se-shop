@@ -17,7 +17,6 @@ const DB_URL = process.env.DB_URL;
 // กำหนดค่าของ corsOptions
 const corsOptions = {
   origin: [
-    'https://two567-mern-se-shop.onrender.com', 
     'https://2567-mern-se-shop-7z3dmgw0w-saminds-projects.vercel.app'
   ],
   // อนุญาตเฉพาะ URL ของ Frontend
