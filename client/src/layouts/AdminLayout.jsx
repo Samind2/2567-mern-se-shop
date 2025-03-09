@@ -5,8 +5,14 @@ import { FaCartArrowDown } from "react-icons/fa6";
 import { FaCartPlus } from "react-icons/fa";
 import { MdOutlineDashboardCustomize } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
+import { FiLogOut } from "react-icons/fi"; 
+import { useContext } from 'react'; // ต้องใช้ useContext
+import { AuthContext } from '../context/AuthContext'; // นำเข้า AuthContext
+
+
 
 const AdminLayout = () => {
+  const { logout } = useContext(AuthContext)
   const isAdmin = true;
   const location = useLocation();
 
@@ -18,6 +24,12 @@ const AdminLayout = () => {
       const url = `/${array.slice(0, index + 1).join("/")}`;
       return { label: path.replace(/-/g, " "), url };
     });
+
+  // ฟังก์ชัน Logout
+  const handleLogout = () => {
+    logout(); // เรียกใช้ logout จาก AuthContext
+    navigate("/"); // นำทางกลับไปที่หน้า Home
+  };
 
   return (
     <div>
@@ -63,7 +75,7 @@ const AdminLayout = () => {
               {/* Sidebar content */}
               <li>
                 <Link
-                  to="/dashboard"
+                  to="/"
                   className="flex items-center space-x-2 mb-3"
                 >
                   <img src={logo} className="w-20" alt="Logo" />
@@ -122,6 +134,17 @@ const AdminLayout = () => {
               <li>
                 <Link to="/customer-support">Customer Support</Link>
               </li>
+               {/* ปุ่ม Logout */}
+               <div className="mt-6">
+                <button
+                  type="button"
+                  onClick={handleLogout} // เรียกฟังก์ชัน handleLogout
+                  className="w-full bg-red text-white p-3 rounded-lg font-bold hover:bg-secondary transition-all ease-in-out transform hover:scale-105 shadow-md hover:shadow-xl flex items-center justify-center gap-2"
+                >
+                  <FiLogOut size={24} />
+                  <span>LOGOUT</span>
+                </button>
+              </div>
             </ul>
           </div>
         </div>

@@ -14,6 +14,7 @@ import AddProducts from "../pages/AddProduct/Index";
 import ManageItems from "../pages/ManageItems/Index";
 import AdminRoute from "../ProtectedRoutes/AdminRoute";
 import ManageUser from "../pages/ManageUser/Index";
+import ManageOrder from "../pages/ManageOrder/Index";
 
 import CheckOutSuccess from "../pages/CheckOutSuccess/Index";
 const router = createBrowserRouter([
@@ -90,6 +91,10 @@ const router = createBrowserRouter([
       {
         path: "manageUser",
         element: <ManageUser />,
+      },
+      {
+        path: "manage-orders",
+        element: <ManageOrder />,
       },
     ],
   },

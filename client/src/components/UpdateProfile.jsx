@@ -52,17 +52,28 @@ const UpdateProfile = () => {
        />
       </div>
       <div className="form-control">
-       <label className="label">
-        <span className="label-text">URL รูปภาพ</span>
-       </label>
-       <input
-        type="text"
-        placeholder="URL รูปภาพ"
-        className="input input-bordered w-full"
-        value={photoURL}
-        onChange={(e) => setPhotoURL(e.target.value)}
-       />
-      </div>
+              <label className="label">
+                <span className="label-text">URL รูปภาพ</span>
+              </label>
+              <input
+                type="text"
+                placeholder="URL รูปภาพ"
+                className="input input-bordered w-full"
+                value={photoURL}
+                onChange={(e) => setPhotoURL(e.target.value)}
+              />
+            </div>
+
+            {/* แสดงรูปภาพตัวอย่าง */}
+            {photoURL && (
+              <div className="mt-3 text-center">
+                <img
+                  src={photoURL}
+                  alt="Profile Preview"
+                  className="w-32 h-32 rounded-full object-cover mx-auto"
+                />
+              </div>
+            )}
       <div className="form-control mt-6">
        <button type="submit" className="btn bg-red text-white w-full">
         อัปเดตโปรไฟล์

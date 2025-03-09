@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const userRouter = require("./routers/user.router");
 const productRouter = require("./routers/Products.router");
 const CartRouter = require("./routers/Cart.router");
+const orderRouter = require("./routers/Order.route");
 const stripeRouter = require("./routers/stripe.router");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./docs/swagger-output.json");
@@ -45,6 +46,7 @@ try {
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/product", productRouter);
 app.use("/api/v1/cart", CartRouter);
+app.use("/api/v1/order", orderRouter);
 app.use("/api/v1/stripe", stripeRouter);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 

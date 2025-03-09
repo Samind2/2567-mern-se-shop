@@ -5,11 +5,13 @@ import { useContext } from "react";
 const AdminRoute = ({ children }) => {
   const { user, getUser, isLoading } = useContext(AuthContext);
   const location = useLocation();
-  const userInfo = getUser();
+  
   if (isLoading) {
-    return <div>loading......</div>;
+    return <div>Loading...</div>;
   }
-  if (user && userInfo.role === "admin") {
+
+  const userInfo = getUser();
+  if (user && userInfo?.role === "admin") {
     return children;
   }
 

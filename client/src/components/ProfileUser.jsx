@@ -10,6 +10,33 @@ const ProfileUser = () => {
   navigate('/UpdateProfile'); // ใช้เส้นทางที่ตรงกับ router
  };
 
+ const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      // สำหรับตัวอย่างนี้ เราจะใช้ URL.createObjectURL เพื่อแสดงตัวอย่างภาพก่อนการอัพโหลด
+      const imageUrl = URL.createObjectURL(file);
+      setImage(imageUrl);
+
+      // หากคุณต้องการอัพโหลดไฟล์ไปยังเซิร์ฟเวอร์ สามารถทำได้ที่นี่
+      // คุณสามารถส่งไปยัง API สำหรับอัพโหลดภาพ
+      // เช่น การใช้ API อัพโหลดภาพและอัปเดตข้อมูลใน AuthContext
+    }
+  };
+
+  const handleSaveProfilePicture = () => {
+    // ฟังก์ชั่นนี้จะเรียกใช้งาน API เพื่อบันทึกภาพที่เลือก
+    // หากการอัพโหลดสำเร็จ คุณสามารถอัปเดต user.photoURL ด้วย URL ใหม่จากการอัพโหลด
+    if (image) {
+      // อัพเดตข้อมูลใน AuthContext
+      setUser((prevUser) => ({
+        ...prevUser,
+        photoURL: image,
+      }));
+
+      // updateUserProfileImage(image); // ฟังก์ชันที่คุณต้องเรียกเพื่ออัปเดตข้อมูลในฐานข้อมูล
+    }
+  };
+
  return (
   <div className="flex justify-center items-center min-h-screen">
    <div className="card w-96 bg-base-100 shadow-xl text-center">
