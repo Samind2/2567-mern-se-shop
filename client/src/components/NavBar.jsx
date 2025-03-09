@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import Profile from "./Profile";
 import { AuthContext } from "../context/AuthContext";
 import UserIcon from "./icon/UserIcon";
-import Modal from "./modal";
+import Modal from "./Modal";
 
 const NavBar = () => {
   const { user } = useContext(AuthContext);
