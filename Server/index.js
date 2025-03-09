@@ -15,18 +15,18 @@ const PORT = process.env.PORT;
 const DB_URL = process.env.DB_URL;
 
 // กำหนดค่าของ corsOptions
-const corsOptions = {
-  origin: [
-    "https://two567-mern-se-shop.onrender.com",
-    'https://2567-mern-se-shop-meb6e1p70-saminds-projects.vercel.app'
-  ],
-  // อนุญาตเฉพาะ URL ของ Frontend
-  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"], // Methods ที่อนุญาต
-  allowedHeaders: ["Content-Type", "x-access-token"], // Headers ที่อนุญาต
-};
+// const corsOptions = {
+//   origin: [
+//     "https://two567-mern-se-shop.onrender.com",
+//     'https://2567-mern-se-shop-meb6e1p70-saminds-projects.vercel.app'
+//   ],
+//   // อนุญาตเฉพาะ URL ของ Frontend
+//   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"], // Methods ที่อนุญาต
+//   allowedHeaders: ["Content-Type", "x-access-token"], // Headers ที่อนุญาต
+// };
 
 // ใช้งาน CORS พร้อม corsOptions
-app.use(cors(corsOptions));
+app.use(cors({ origin: BASE_URL, credentials: true }));
 //stripe webhook must use raw body
 app.use("/api/v1/stripe/webhook", express.raw({ type: "application/json" }));
 // กำหนดให้อนุญาต OPTIONS ทั้งหมด
