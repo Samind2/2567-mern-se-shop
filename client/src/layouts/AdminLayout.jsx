@@ -10,8 +10,8 @@ import { useContext } from 'react'; // ต้องใช้ useContext
 import { AuthContext } from '../context/AuthContext'; // นำเข้า AuthContext
 
 
-
-const AdminLayout = () => {
+ 
+const AdminLayout = () => { // สร้าง AdminLayout
   const { logout } = useContext(AuthContext)
   const isAdmin = true;
   const location = useLocation();
