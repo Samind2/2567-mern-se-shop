@@ -26,7 +26,8 @@ const corsOptions = {
 app.use(cors(corsOptions));
 //stripe webhook must use raw body
 app.use("/api/v1/stripe/webhook", express.raw({ type: "application/json" }));
-app.options("*", cors(corsOptions)); 
+// กำหนดให้อนุญาต OPTIONS ทั้งหมด
+app.options("*", cors(corsOptions));
 app.use(express.json());
 
 
