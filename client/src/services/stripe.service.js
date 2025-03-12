@@ -1,5 +1,5 @@
 import api from "./api";
-const API_URL = "/api/v1/stripe";
+const API_URL = "/stripe";
 
 const createCheckOutSession = async (data) => {
   return await api.post(`${API_URL}/create-checkout-session`, data);

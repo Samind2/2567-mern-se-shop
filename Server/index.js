@@ -12,12 +12,15 @@ const swaggerDocument = require("./docs/swagger-output.json");
 const app = express();
 const PORT = process.env.PORT;
 const DB_URL = process.env.DB_URL;
+const BASE_URL = process.env.BASE_URL;
+
 
 // กำหนดค่าของ corsOptions
 const corsOptions = {
-  origin: [
-    "https://two567-mern-se-shop.onrender.com",
-    "https://2567-mern-se-shop-bd51pbab3-saminds-projects.vercel.app",
+  origin: [BASE_URL,
+    //"https://two567-mern-se-shop.onrender.com",
+    //"https://2567-mern-se-shop-bd51pbab3-saminds-projects.vercel.app",
+    
   ],
   // อนุญาตเฉพาะ URL ของ Frontend
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"], // Methods ที่อนุญาต

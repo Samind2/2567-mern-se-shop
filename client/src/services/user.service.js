@@ -1,5 +1,5 @@
 import api from "./api";
-const API_URL = "/api/v1/user";
+const API_URL = "/user";
 const signJwt = async (email) => {
   return await api.post(`${API_URL}/sign`, { email });
 };
