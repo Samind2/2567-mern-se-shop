@@ -57,6 +57,11 @@ const Profile = () => {
           </li>
           <div className="divider my-1"></div> {/* เส้นแบ่ง */}
           <li>
+            <a className="justify-between" href='/dashboard'>
+              Dashboard
+            </a>
+          </li>
+          <li>
             <a className="justify-between" href='/profileUser'>
               Profile
               <span className="badge">New</span>
